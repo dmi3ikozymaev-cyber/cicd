@@ -1,0 +1,54 @@
+name: Java CI with Maven and Allure
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Install Chrome and ChromeDriver
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y wget unzip xvfb libxi6 libgconf-2-4
+          wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+          echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
+          sudo apt-get update
+          sudo apt-get install -y google-chrome-stable
+          CHROMEDRIVER_VERSION=$(curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE)
+          wget -N http://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip -P /tmp
+          unzip /tmp/chromedriver_linux64.zip -d /usr/local/bin/
+          sudo chmod +x /usr/local/bin/chromedriver
+
+      - name: Run tests
+        run: mvn clean test
+
+      - name: Install Allure CLI
+        run: |
+          sudo apt-get install -y wget unzip
+          wget -O allure.zip https://github.com/allure-framework/allure2/releases/latest/download/allure-commandline.zip
+          unzip -q allure.zip -d /opt/
+          sudo ln -s /opt/allure-*/bin/allure /usr/bin/allure
+          allure --version
+
+      - name: Generate Allure report
+        run: allure generate target/allure-results -o target/allure-report --clean
+
+      - name: Upload Allure report
+        uses: actions/upload-artifact@v3
+        with:
+          name: allure-report
+          path: target/allure-report

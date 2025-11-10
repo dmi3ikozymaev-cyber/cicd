@@ -1,0 +1,31 @@
+# Maven target folder
+/target/
+
+# IntelliJ IDEA
+*.iml
+.idea/
+*.iws
+*.ipr
+out/
+
+# Eclipse
+.settings/
+bin/
+
+# Logs
+*.log
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# Allure results and report
+target/allure-results/
+target/allure-report/
+
+# Node/npm (если используешь npm для Allure CLI)
+node_modules/
+
+# Temporary files
+*.tmp
+*.swp
