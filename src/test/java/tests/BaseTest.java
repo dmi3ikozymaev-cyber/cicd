@@ -1,22 +1,23 @@
 package tests;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.testng.annotations.AfterMethod;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.AfterMethod;
+
+import java.net.URL;
 
 public class BaseTest {
   protected WebDriver driver;
 
   @BeforeMethod
-  public void setUp() {
+  public void setUp() throws Exception {
     ChromeOptions options = new ChromeOptions();
-    options.addArguments("--headless"); // запускаем без GUI для CI
-    options.addArguments("--no-sandbox");
-    options.addArguments("--disable-dev-shm-usage");
-    driver = new ChromeDriver(options);
-    driver.manage().window().maximize();
+    options.addArguments("--headless", "--no-sandbox", "--disable-dev-shm-usage");
+
+    String remoteUrl = System.getenv("SELENIUM_REMOTE_URL");
+    driver = new RemoteWebDriver(new URL(remoteUrl), options);
   }
 
   @AfterMethod

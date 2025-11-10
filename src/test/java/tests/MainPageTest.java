@@ -12,7 +12,7 @@ public class MainPageTest extends BaseTest {
     driver.get("https://auto.drom.ru");
     WebElement button = driver.findElement(By.cssSelector("a[href='https://auto.drom.ru/']"));
     String buttonText = button.getText();
-    Assert.assertEquals(buttonText, "Авто");
+    Assert.assertEquals(buttonText, "Автомобили");
   }
 
   @Test
