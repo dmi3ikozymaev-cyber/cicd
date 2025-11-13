@@ -37,13 +37,6 @@ public class BaseTest {
     Assert.assertEquals(buttonText, text);
   }
 
-  public void checkTextMotoButton() {
-    Allure.step("Проверить текст в кнопке Мото");
-    WebElement button = driver.findElement(By.cssSelector("a[href='https://auto.drom.ru/moto/']"));
-    String buttonText = button.getText();
-    Assert.assertEquals(buttonText, "Мото1");
-  }
-
   @AfterMethod
   public void tearDown() {
     if (driver != null) {
