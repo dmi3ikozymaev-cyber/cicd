@@ -1,7 +1,9 @@
 package tests;
 
 import io.qameta.allure.Step;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.Assert;
@@ -22,18 +24,18 @@ public class BaseTest {
     driver = new RemoteWebDriver(new URL(remoteUrl), options);
   }
 
-  @Step
+  @Step("Открыть страницу auto.drom.ru")
   public void openMainPage() {
     driver.get("https://auto.drom.ru");
     String url = driver.getCurrentUrl();
-    Assert.assertEquals(url, "https://auto.drom.r");
+    Assert.assertEquals(url, "https://auto.drom.ru/");
   }
 
-  @Step
-  public void openGoogle() {
-    driver.get("https://auto.drom.ru");
-    String url = driver.getCurrentUrl();
-    Assert.assertEquals(url, "https://www.google.com/");
+  @Step("Проверить текст в кнопке")
+  public void checkButton(String selector, String text) {
+    WebElement button = driver.findElement(By.cssSelector(selector));
+    String buttonText = button.getText();
+    Assert.assertEquals(buttonText, text);
   }
 
   @AfterMethod
