@@ -1,7 +1,6 @@
 package tests;
 
 import io.qameta.allure.Allure;
-import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -25,8 +24,8 @@ public class BaseTest {
     driver = new RemoteWebDriver(new URL(remoteUrl), options);
   }
 
-  @Step("Открыть страницу auto.drom.ru")
   public void openMainPage() {
+    Allure.step("Открыть страницу auto.drom.ru");
     driver.get("https://auto.drom.ru");
     String url = driver.getCurrentUrl();
     Assert.assertEquals(url, "https://auto.drom.ru/");
@@ -39,8 +38,8 @@ public class BaseTest {
     Assert.assertEquals(buttonText, text);
   }
 
-  @Step("Проверить текст в кнопке Мото")
   public void checkTextMotoButton() {
+    Allure.step("Проверить текст в кнопке Мото");
     WebElement button = driver.findElement(By.cssSelector("a[href='https://auto.drom.ru/moto/']"));
     String buttonText = button.getText();
     Assert.assertEquals(buttonText, "Мото1");
