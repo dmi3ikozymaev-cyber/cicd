@@ -1,5 +1,6 @@
 package tests;
 
+import io.qameta.allure.Allure;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -30,9 +31,9 @@ public class BaseTest {
     String url = driver.getCurrentUrl();
     Assert.assertEquals(url, "https://auto.drom.ru/");
   }
-
-  @Step("Проверить текст в кнопке")
+  
   public void checkTextButton(String selector, String text) {
+    Allure.step("Проверить текст в кнопке");
     WebElement button = driver.findElement(By.cssSelector(selector));
     String buttonText = button.getText();
     Assert.assertEquals(buttonText, text);
