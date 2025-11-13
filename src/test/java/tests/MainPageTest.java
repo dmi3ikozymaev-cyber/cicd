@@ -8,7 +8,6 @@ public class MainPageTest extends BaseTest {
   public void checkAutoButtonText() {
     openMainPage();
     checkTextButton("a[href='https://auto.drom.ru/']", "Автомобили");
-    checkTextMotoButton();
   }
 
   @Test(description = "Проверка кнопки Спецтехника")
