@@ -31,7 +31,7 @@ public class BaseTest {
     String url = driver.getCurrentUrl();
     Assert.assertEquals(url, "https://auto.drom.ru/");
   }
-  
+
   public void checkTextButton(String selector, String text) {
     Allure.step("Проверить текст в кнопке");
     WebElement button = driver.findElement(By.cssSelector(selector));
