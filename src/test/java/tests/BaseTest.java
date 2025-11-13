@@ -32,10 +32,17 @@ public class BaseTest {
   }
 
   @Step("Проверить текст в кнопке")
-  public void checkButton(String selector, String text) {
+  public void checkTextButton(String selector, String text) {
     WebElement button = driver.findElement(By.cssSelector(selector));
     String buttonText = button.getText();
     Assert.assertEquals(buttonText, text);
+  }
+
+  @Step("Проверить текст в кнопке Мото")
+  public void checkTextMotoButton() {
+    WebElement button = driver.findElement(By.cssSelector("a[href='https://auto.drom.ru/moto/']"));
+    String buttonText = button.getText();
+    Assert.assertEquals(buttonText, "Мото1");
   }
 
   @AfterMethod
