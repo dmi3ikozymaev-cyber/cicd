@@ -26,7 +26,7 @@ public class BaseTest {
   public void openMainPage() {
     driver.get("https://auto.drom.ru");
     String url = driver.getCurrentUrl();
-    Assert.assertEquals(url, "https://auto.drom.ru/");
+    Assert.assertEquals(url, "https://auto.drom.r");
   }
 
   @Step
