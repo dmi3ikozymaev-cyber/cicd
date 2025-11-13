@@ -9,7 +9,7 @@ public class MainPageTest extends BaseTest {
 
   @Test
   public void checkAutoButtonText() {
-    driver.get("https://auto.drom.ru");
+    openMainPage();
     WebElement button = driver.findElement(By.cssSelector("a[href='https://auto.drom.ru/']"));
     String buttonText = button.getText();
     Assert.assertEquals(buttonText, "Автомобили");
@@ -17,9 +17,15 @@ public class MainPageTest extends BaseTest {
 
   @Test
   public void checkSpectButtonText() {
-    driver.get("https://auto.drom.ru");
+    openMainPage();
     WebElement button = driver.findElement(By.cssSelector("a[href='https://auto.drom.ru/spec/']"));
     String buttonText = button.getText();
     Assert.assertEquals(buttonText, "Авто");
+  }
+
+  @Test
+  public void checkUrls() {
+    openMainPage();
+    openGoogle();
   }
 }
