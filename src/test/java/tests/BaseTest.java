@@ -19,7 +19,6 @@ public class BaseTest {
   public void setUp() throws Exception {
     ChromeOptions options = new ChromeOptions();
     options.addArguments("--headless", "--no-sandbox", "--disable-dev-shm-usage");
-
     String remoteUrl = System.getenv("SELENIUM_REMOTE_URL");
     driver = new RemoteWebDriver(new URL(remoteUrl), options);
   }
