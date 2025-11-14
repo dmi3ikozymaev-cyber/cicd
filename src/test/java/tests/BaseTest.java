@@ -34,7 +34,7 @@ public class BaseTest {
 
   @Step("прогон")
   public void checkTextButton(String selector, String text) {
-    Allure.step("Проверить текст в кнопке");
+    //Allure.step("Проверить текст в кнопке");
     WebElement button = driver.findElement(By.cssSelector(selector));
     String buttonText = button.getText();
     Assert.assertEquals(buttonText, text);
