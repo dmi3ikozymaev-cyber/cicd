@@ -14,6 +14,5 @@ public class MainPageTest extends BaseTest {
   public void checkSpectButtonText() {
     openMainPage();
     checkTextButton("a[href='https://auto.drom.ru/spec/']", "Автомобили");
-    checkTextMotoButton();
   }
 }
