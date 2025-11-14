@@ -12,7 +12,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.AfterMethod;
 
 import java.net.URL;
-import org.testng.annotations.Test;
 
 public class BaseTest {
   protected WebDriver driver;
@@ -34,7 +33,7 @@ public class BaseTest {
 
   @Step("прогон")
   public void checkTextButton(String selector, String text) {
-    //Allure.step("Проверить текст в кнопке");
+    Allure.step("Проверить текст в кнопке");
     WebElement button = driver.findElement(By.cssSelector(selector));
     String buttonText = button.getText();
     Assert.assertEquals(buttonText, text);

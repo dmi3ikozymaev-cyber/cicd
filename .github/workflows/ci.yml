@@ -31,7 +31,6 @@ jobs:
           wget https://github.com/allure-framework/allure2/releases/download/2.27.0/allure-2.27.0.zip
           unzip allure-2.27.0.zip -d /opt/
           sudo ln -s /opt/allure-2.27.0/bin/allure /usr/local/bin/allure
-          allure --version  
 
       - name: run test
         env:
